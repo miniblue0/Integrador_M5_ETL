@@ -40,7 +40,7 @@ productos_ge = PandasDataset(productos_df)
 
 #expectativas de usuarios
 usuarios_ge.expect_column_values_to_not_be_null("email")  #emails no nulos
-usuarios_ge.expect_column_values_to_be_in_set("edad", range(0, 120))#rango de edades
+usuarios_ge.expect_column_values_to_be_in_set("edad", range(0, 99))#rango de edades
  
 usuarios_ge.expect_column_values_to_match_regex("email", r".+@.+\..+") #emails en formato correcto, nombre@etc...
 
