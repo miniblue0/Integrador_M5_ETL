@@ -200,4 +200,4 @@
   }
 }
 ```
-#### Luego de la ejecucion de programa los archivos ```bash usuarios.csv ``` y ```bash productos.json``` estaran corregidos y en un formato csv
+#### Luego de la ejecucion de programa los archivos ``` usuarios.csv ``` y ``` productos.json``` estaran corregidos y en un formato csv
