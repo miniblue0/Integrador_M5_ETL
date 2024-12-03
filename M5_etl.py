@@ -39,16 +39,15 @@ usuarios_ge = PandasDataset(usuarios_df)
 productos_ge = PandasDataset(productos_df)
 
 #expectativas de usuarios
-usuarios_ge.expect_column_values_to_not_be_null("email")
-
-usuarios_ge.expect_column_values_to_be_in_set("edad", list(range(0, 120))) #arme una lista de edades porque no me tomaba el rango de edades directamente
+usuarios_ge.expect_column_values_to_not_be_null("email")  #emails no nulos
+usuarios_ge.expect_column_values_to_be_in_set("edad", range(0, 120))#rango de edades
  
-usuarios_ge.expect_column_values_to_match_regex("email", r".+@.+\..+")
+usuarios_ge.expect_column_values_to_match_regex("email", r".+@.+\..+") #emails en formato correcto, nombre@etc...
 
 # expectativas de productos
 
-productos_ge.expect_column_values_to_not_be_null("nombre")
-productos_ge.expect_column_values_to_be_of_type("precio", "float")
+productos_ge.expect_column_values_to_not_be_null("nombre") #nombres no nulos
+productos_ge.expect_column_values_to_be_of_type("precio", "float") #que los precios sean float
 
 #imprimo los resultados
 print('******************* RESULTADOS DE LA VALIDACION DE USUARIOS:  ********************************')
