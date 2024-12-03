@@ -69,7 +69,7 @@
         "kwargs": {
           "column": "edad",
           "value_set": [
-            0,---lista de 120 numeros---119
+            ....rango de 0 a 99...
           ],
           "result_format": "BASIC"
         },
