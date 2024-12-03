@@ -1,0 +1,37 @@
+[
+    {
+        "id": 1,
+        "nombre": "Laptop",
+        "precio": 750.99,
+        "stock": 15,
+        "fecha_creacion": "2023-11-30"
+    },
+    {
+        "id": 2,
+        "nombre": "Teclado",
+        "precio": 25.5,
+        "stock": 50,
+        "fecha_creacion": "2023-10-20"
+    },
+    {
+        "id": 3,
+        "nombre": "Mouse",
+        "precio": 15.75,
+        "stock": 100,
+        "fecha_creacion": "2023-09-15"
+    },
+    {
+        "id": 4,
+        "nombre": "Monitor",
+        "precio": 199.99,
+        "stock": 20,
+        "fecha_creacion": "2023-08-10"
+    },
+    {
+        "id": 5,
+        "nombre": "Impresora",
+        "precio": 120.0,
+        "stock": 10,
+        "fecha_creacion": "2023-12-01"
+    }
+]
