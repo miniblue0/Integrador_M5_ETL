@@ -1,6 +1,6 @@
 id,nombre,email,edad,fecha_registro
-1,Ana Lopez,ana.lopez@example.com,25,2023-10-12
-2,Carlos Ruiz,carlos.ruiz@example.com,30,2023-11-01
-3,Lucía Gómez,lucia.gomez@example.com,29,2023-09-25
-4,Juan Perez,juan.perez@example.com,35,2023-12-01
-5,Maria Sanchez,maria.sanchez@example.com,27,2023-08-15
+1,Ana Lopez,ana.lopez@examplecom,25,2023-10-12
+2,Carlos Ruiz,carlos.ruiz@examplecom,-30,2023-11-01
+3,Lucia Gmez,lucia.gomez@example.com,29,25/09/2023
+4,Juan Perez,juanperez@example.com,treinta y cinco,20231201
+5,María Snchez,maria.sanchez@.example.com,27,15-08-2020

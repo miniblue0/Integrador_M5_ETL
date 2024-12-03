@@ -1,46 +1,57 @@
 import pandas as pd
 import json 
+import great_expectations as ge
 from great_expectations.dataset import PandasDataset
 
-data_csv = pd.read_csv('Integradores/usuarios.csv')
-#print(data_csv)
+usuarios_df = pd.read_csv('C:\\Users\\casa\\Desktop\\Python\\Integradores\\usuarios.csv')
+#print(usuarios_df)
 
-with open('Integradores/productos.json') as file:
-    data_json = pd.DataFrame(json.load(file))
-#print(data_json)
-
-
-data_csv.fillna({'edad': 0, 'nombre': 'Desconocido'}, inplace=True) #limpia los nulos
-
-data_csv.rename(columns=lambda x: x.lower().replace(' ', '_'), inplace=True) #renombro y normalizo las columnas para que tengan el mismo formato
-
-data_csv['edad'] = data_csv['edad'].astype(int) #formateo la edad a numeros
-
-data_csv['fecha_nacimiento'] = pd.to_datetime(data_csv['fecha_nacimiento'], errors='coerce') #formateo las fechas
-
-#armo el dataframe y empiezo a comprobar los cambios
-df_transformed = data_csv
-
-ge_df = PandasDataset(df_transformed)
-ge_df.expect_column_values_to_be_of_type('edad', 'int') #verifivo si los cambios estan bien
-
-ge_df.expect_column_values_to_be_unique('id') #reviso que no haya id repetidos
-
-ge_df.expect_column_values_to_be_in_range('edad', 0, 120) #verifico el rango de edades
-
-ge_df.expect_column_values_to_not_be_null('nombre') #no hay valores nulos
-
-ge_df.expect_column_values_to_match_strftime_format('fecha_nacimiento', '%Y-%m-%d') #las fechas estan en el mismo formato
-
-results = ge_df.validate()
-print(results)
-
-#great_expectations docs build
+with open('C:\\Users\\casa\\Desktop\\Python\\Integradores\\productos.json') as file:
+    productos_data = json.load(file)
+productos_df = pd.DataFrame(productos_data)
+#print(productos_df)
 
 
+usuarios_df.fillna("Desconocido", inplace=True)
+productos_df.fillna({"nombre": "Producto sin nombre"}, inplace=True) #limpia los nulos
+
+usuarios_df.columns = usuarios_df.columns.str.lower()
+productos_df.columns = productos_df.columns.str.lower()#renombro y normalizo las columnas para que tengan el mismo formato
+
+usuarios_df['edad'] = pd.to_numeric(usuarios_df['edad'], errors='coerce').fillna(0).astype(int)
+productos_df['precio'] = pd.to_numeric(productos_df['precio'], errors='coerce').fillna(0) #formateo los tipos de datos
+
+usuarios_df['fecha_registro'] = pd.to_datetime(usuarios_df['fecha_registro'], errors='coerce')
+productos_df['fecha_creacion'] = pd.to_datetime(productos_df['fecha_creacion'], errors='coerce') #formateo las fechas en ambos dataframe
+
+print('datos transformados correctamente')
 
 
+#cargo los datos
+usuarios_df.to_csv("C:\\Users\\casa\\Desktop\\Python\\Integradores\\usuarios.csv", index=False)
+productos_df.to_csv("C:\\Users\\casa\\Desktop\\Python\\Integradores\\productos.json", index=False)
 
+print('datos cargados correctamente')
 
+#armo las expectativas
 
+usuarios_ge = PandasDataset(usuarios_df)
+productos_ge = PandasDataset(productos_df)
 
+#expectativas de usuarios
+usuarios_ge.expect_column_values_to_not_be_null("email")
+
+usuarios_ge.expect_column_values_to_be_in_set("edad", list(range(0, 120))) #arme una lista de edades porque no me tomaba el rango de edades directamente
+ 
+usuarios_ge.expect_column_values_to_match_regex("email", r".+@.+\..+")
+
+# expectativas de productos
+
+productos_ge.expect_column_values_to_not_be_null("nombre")
+productos_ge.expect_column_values_to_be_of_type("precio", "float")
+
+#imprimo los resultados
+print(usuarios_ge.validate())
+print(productos_ge.validate())
+
+# tuve muchos problemas con las rutas de los archivos y no pude guardarlo con great expectations
