@@ -51,7 +51,12 @@ productos_ge.expect_column_values_to_not_be_null("nombre")
 productos_ge.expect_column_values_to_be_of_type("precio", "float")
 
 #imprimo los resultados
+print('******************* RESULTADOS DE LA VALIDACION DE USUARIOS:  ********************************')
 print(usuarios_ge.validate())
+
+
+print('\n******************* RESULTADOS DE LA VALIDACION DE PRODUCTOS:  ********************************')
+
 print(productos_ge.validate())
 
 # tuve muchos problemas con las rutas de los archivos y no pude guardarlo con great expectations
