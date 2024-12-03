@@ -3,7 +3,8 @@
 
 
 ## Resultado esperado luego de la validacion de usuarios con Great Expectations:
-- {
+```json
+{
   "success": false,
   "results": [     
     {
@@ -118,10 +119,13 @@
       "great_expectations_version": "0.18.14"
     }
   }
-}
+} 
+```
 
 ## Resultado esperado luego de la validacion de productos con Great Expectations:
-- {
+-
+```json 
+{
   "success": true,
   "results": [
     {
@@ -195,4 +199,5 @@
     }
   }
 }
-## Luego de la ejecucion de programa los archivos ```bash usuarios.csv ``` y ```bash productos.json``` estaran corregidos y en un formato csv
+```
+#### Luego de la ejecucion de programa los archivos ```bash usuarios.csv ``` y ```bash productos.json``` estaran corregidos y en un formato csv
